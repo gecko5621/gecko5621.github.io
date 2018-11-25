@@ -2,14 +2,11 @@
 // include a query parameter in the splash URL with the Zapier hook address.   https://yourserver/?zap_url=https://hooks.zapier.com/hooks/catch/123123/iqq123/
 
 // extract splash URL custom parameters
-const zap_url = decodeURIComponent(GetURLParameter("zap_url"));
+const zap_url = decodeURIComponent(GetURLParameter("https://hooks.zapier.com/hooks/catch/4100667/cug83o/"));
     console.log("zap_url: "+zap_url);
     // Sample: "https://hooks.zapier.com/hooks/catch/123123/iqq123/";
 
 // extract Meraki provided paramaters
-var base_grant_url = decodeURIComponent(GetURLParameter("base_grant_url"));
-var user_continue_url = decodeURIComponent(GetURLParameter("user_continue_url"));
-var node_mac = GetURLParameter("node_mac");
 var client_ip = GetURLParameter("client_ip");
 var client_mac = GetURLParameter("client_mac");
 
@@ -17,11 +14,8 @@ var client_mac = GetURLParameter("client_mac");
 // Print Meraki provided paramaters for Debugging State
 console.log("user_continue_url: "+user_continue_url);
 console.log("client_ip: "+client_ip);
-document.getElementById("baseGrantURL").innerHTML = base_grant_url;
-document.getElementById("userContinueURL").innerHTML = user_continue_url;
 document.getElementById("clientIP").innerHTML = client_ip;
 document.getElementById("clientMAC").innerHTML = client_mac;
-document.getElementById("nodeMAC").innerHTML = node_mac;
 
 // Form Submit handler. 
 document.getElementById('loginForm').onsubmit= function(e){
@@ -61,7 +55,6 @@ function login(){
 
     // Zapier Webhook - Store data
     $.post( zap_url, data, function(){
-        console.log("zap success");
         // authenticate user on wirless
         authUser();
         }
